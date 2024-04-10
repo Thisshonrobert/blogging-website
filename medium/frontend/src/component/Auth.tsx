@@ -1,7 +1,12 @@
 
 import { ChangeEvent, useState } from "react"
-import { Link } from "react-router-dom"
+import { Link, useNavigate } from "react-router-dom"
 import {SignupInput} from "@thisshon/medium-common";
+import axios from "axios";
+import { BACKEND_URL } from "../config";
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 
 export const Auth = ({type}:{type:"signup"|"signin"}) =>{
     const [postInputs,setPostInputs] = useState<SignupInput>({
@@ -9,7 +14,18 @@ export const Auth = ({type}:{type:"signup"|"signin"}) =>{
             email:"",
             password:""
     })
-   
+    const navigate = useNavigate()
+   async function sendRequest(){
+    try {
+      const response = await axios.post(`${BACKEND_URL}/api/v1/user/${type==="signup"?"signup":"signin"}`,postInputs)
+    const jwt = response.data.jwt;
+    localStorage.setItem("token",jwt);
+    navigate("/blogs")
+    } catch (error) {
+      toast.error('Failed to sign up. Please try again.');
+    }
+    
+   }
     return(
             <div className="w-full h-screen ">
                 <div className="flex flex-col justify-center items-center pt-32">
@@ -41,7 +57,7 @@ export const Auth = ({type}:{type:"signup"|"signin"}) =>{
                             password:e.target.value
                         })
                     }}/>
-                    <button type="button" className="text-white bg-gradient-to-br
+                    <button onClick={sendRequest} type="button" className="text-white bg-gradient-to-br
                      from-purple-600 to-blue-500 hover:bg-gradient-to-bl 
                      focus:ring-4 focus:outline-none focus:ring-blue-300
                       dark:focus:ring-blue-800 font-medium rounded-lg text-sm 
