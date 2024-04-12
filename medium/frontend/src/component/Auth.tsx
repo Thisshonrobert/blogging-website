@@ -38,7 +38,7 @@ export const Auth = ({type}:{type:"signup"|"signin"}) =>{
                           {type==="signup"?"Login":"Sign Up"}</Link>
                     </div>
                 </div>
-                <div className="flex flex-col max-w-md mx-auto">
+                <div className="flex flex-col max-w-md mx-10 md:mx-auto">
                     {type==="signup"?<LabelInput label="Username" placeholder="Thisshon Robert" onChange={(e)=>{
                         setPostInputs({
                             ...postInputs,

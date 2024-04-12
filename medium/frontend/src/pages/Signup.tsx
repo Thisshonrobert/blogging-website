@@ -4,7 +4,7 @@ import { ToastContainer } from 'react-toastify';
 
 export const Signup = ()=>{
     return(
-        <div className="grid grid-cols-2">
+        <div className="grid grid-cols1 lg:grid-cols-2">
             <div>
                 <Auth type={"signup"}/>
                 <ToastContainer/>
