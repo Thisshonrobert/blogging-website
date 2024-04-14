@@ -110,10 +110,21 @@ try {
         datasourceUrl: c.env?.DATABASE_URL,
     }).$extends(withAccelerate());
 
-    const posts = await prisma.post.findMany({});
-    console.log(posts); // Log the posts
+    const blogs = await prisma.post.findMany({
+      select:{
+        content:true,
+        title:true,
+        id:true,
+        publishedDate:true,
+        author:{
+          select:{
+            name:true
+          }
+        }
+      }
+    });
 
-    return c.json(posts);
+    return c.json(blogs);
 })
 
   blogRouter.get('/:id', async(c) => {
@@ -126,7 +137,19 @@ try {
     const blog = await prisma.post.findUnique({
         where:{
             id:blogId
+        },
+        select:{
+          content:true,
+          title:true,
+          id:true,
+          publishedDate:true,
+          author:{
+            select:{
+              name:true
+            }
+          }
         }
+       
     })
 
     return c.json(blog)

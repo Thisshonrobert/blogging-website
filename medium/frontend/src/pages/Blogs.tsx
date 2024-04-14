@@ -1,40 +1,36 @@
 import { BlogsCard } from "../component/BlogsCard"
 import { Navbar } from "../component/Navbar"
+import { useBlogs } from "../hooks"
+import { BlogSkeleton } from "../component/BlogSkeleton"
 
 export const Blogs=()=>{
+  const {loading,blogs} = useBlogs();
+  if(loading){
     return(
+    <div>
+      <Navbar/>
+      <BlogSkeleton/>
+      <BlogSkeleton/>
+      <BlogSkeleton/>
+    </div>)
+  }  
+  return(
     <div>
         <div>
             <Navbar/>
         </div>
-        <div className="flex flex-col justify-center pl-[25%]">
-        <BlogsCard authorName="Thisshon Robert RS"
-         title="How an Ugly Single-Page Website makes $5000 a Month with Affiliate Marketing" 
-         content="The first use of Lorem ipsum is uncertain, though some have suggested the 1500s,
-          when sections of Classical works were often used as dummy texts by printers to make type
-           specimen books demonstrating different fonts. According to this account, the material was 
-           sheets that featured the passage for use in the advertising industry. 
-           The sheets allowed typesetters and designers to cut out and rub on the text
-            in various fonts, sizes, and formats for mock-ups and prototypes." 
-            publishedDate="Apr 12, 2024"/>
-              <BlogsCard authorName="Thisshon Robert RS"
-                title="How an Ugly Single-Page Website makes $5000 a Month with Affiliate Marketing" 
-         content="The first use of Lorem ipsum is uncertain, though some have suggested the 1500s,
-          when sections of Classical works were often used as dummy texts by printers to make type
-           specimen books demonstrating different fonts. According to this account, the material was 
-           sheets that featured the passage for use in the advertising industry. 
-           The sheets allowed typesetters and designers to cut out and rub on the text
-            in various fonts, sizes, and formats for mock-ups and prototypes." 
-            publishedDate="Apr 12, 2024"/>
-              <BlogsCard authorName="Thisshon Robert RS"
-         title="How an Ugly Single-Page Website makes $5000 a Month with Affiliate Marketing" 
-         content="The first use of Lorem ipsum is uncertain, though some have suggested the 1500s,
-          when sections of Classical works were often used as dummy texts by printers to make type
-           specimen books demonstrating different fonts. According to this account, the material was 
-           sheets that featured the passage for use in the advertising industry. 
-           The sheets allowed typesetters and designers to cut out and rub on the text
-            in various fonts, sizes, and formats for mock-ups and prototypes." 
-            publishedDate="Apr 12, 2024"/>
+        <div className="flex flex-col justify-center pl-[15%] md:pl-[25%]">
+        {blogs.map((blog,index)=>(
+
+              <BlogsCard key={index}
+              id={blog.id}
+              authorName={blog.author.name || "Anonymous"}
+              title={blog.title} 
+              content={blog.content}
+              publishedDate={blog.publishedDate}/>
+        ))}
+       
+            
          </div>
     </div>  
     )
