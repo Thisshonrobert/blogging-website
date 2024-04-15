@@ -9,10 +9,8 @@ export const Blog = () => {
         case 'loading':
             return <div>Loading...</div>;
         case 'hasError':
-            console.error('Error loading blog:', blogLoadable.contents.message);
             return <div>Error loading blog.</div>;
         case 'hasValue':
-            console.error('Error loading blog:', blogLoadable.contents);
             return (
                 <div>
                     <FullBlog blog={blogLoadable.contents} />

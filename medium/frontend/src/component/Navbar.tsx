@@ -1,11 +1,12 @@
+import { Link } from "react-router-dom"
 import { Avatar } from "./BlogsCard"
 
 export const Navbar = ()=>{
     return(
         <div className="border-b-2 flex flex-row justify-between px-10 py-4">
-            <div className="flex flex-col justify-center">
+            <Link to={"/blogs"} className="flex flex-col justify-center">
                 Medium
-            </div>
+            </Link>
             <div>
                 <Avatar size={"big"} name={"Thisshon Robert"}/>
             </div>
