@@ -2,7 +2,7 @@ import { BlogType } from "../types/BlogType";
 import { Avatar } from "./BlogsCard";
 import { Navbar } from "./Navbar";
 
-export const FullBlog = ({ blog }: { blog: BlogType | null }) => {
+export const FullBlog = ({ blog }: { blog: BlogType }) => {
   if (!blog) {
     return <div>Blog not found.</div>;
   }
@@ -11,6 +11,7 @@ export const FullBlog = ({ blog }: { blog: BlogType | null }) => {
     month: 'long',
     day: 'numeric'
   });
+  
 
   return (
     <div>
