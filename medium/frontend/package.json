@@ -12,13 +12,16 @@
   "dependencies": {
     "@thisshon/medium-common": "^1.0.0",
     "axios": "^1.6.8",
+    "lodash": "^4.17.21",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-router-dom": "^6.22.3",
     "react-toastify": "^10.0.5",
-    "recoil": "^0.7.7"
+    "recoil": "^0.7.7",
+    "recoil-persist": "^5.1.0"
   },
   "devDependencies": {
+    "@types/lodash": "^4.17.0",
     "@types/react": "^18.2.66",
     "@types/react-dom": "^18.2.22",
     "@typescript-eslint/eslint-plugin": "^7.2.0",

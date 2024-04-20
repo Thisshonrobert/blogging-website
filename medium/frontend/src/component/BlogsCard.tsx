@@ -51,4 +51,3 @@ export function Avatar({name ,size}:{name:string,size:"big"|"small"}){
 
     )
 }
-
