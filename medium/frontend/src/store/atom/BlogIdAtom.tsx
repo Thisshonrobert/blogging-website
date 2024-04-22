@@ -1,13 +1,10 @@
 import { atom } from 'recoil';
+import { recoilPersist } from 'recoil-persist'
 
-export const BlogIdAtom = atom({
+const { persistAtom } = recoilPersist()
+
+export const BlogIdAtom =atom({
   key: 'BlogIdAtom',
-  default: localStorage.getItem('blogId') || "",
-  effects_UNSTABLE: [
-    ({ onSet }) => {
-      onSet(newValue => {
-        localStorage.setItem('blogId', newValue);
-      });
-    },
-  ],
-});
+  default: "",
+  effects_UNSTABLE: [persistAtom],
+})

@@ -1,5 +1,5 @@
 import { useEffect } from 'react';
-import { useSetRecoilState } from 'recoil';
+import { useRecoilState } from 'recoil';
 import { useRecoilValueLoadable } from 'recoil';
 import { BlogSelector } from '../store/selector/BlogSelector';
 import { FullBlog } from '../component/FullBlog';
@@ -7,15 +7,14 @@ import { FullBlogSkeleton } from '../component/FullBlogSkeleton';
 import { BlogIdAtom } from '../store/atom/BlogIdAtom'; 
 
 export const Blog = () => {
-    const setBlogId = useSetRecoilState(BlogIdAtom);
-    const blogLoadable = useRecoilValueLoadable(BlogSelector);
+    const [blogId,setBlogId] = useRecoilState(BlogIdAtom);
+    const blogLoadable = useRecoilValueLoadable(BlogSelector(blogId));
 
     useEffect(() => {
-        const blogId = localStorage.getItem('blogId');
         if (blogId) {
           setBlogId(blogId);
         }
-      }, [setBlogId]);
+      }, [blogId]);
 
     switch (blogLoadable.state) {
         case 'loading':
