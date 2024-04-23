@@ -155,6 +155,31 @@ try {
     return c.json(blog)
   })
 
+  blogRouter.put("/delete",async(c)=>{
+    const prisma = new PrismaClient({
+      datasourceUrl: c.env?.DATABASE_URL,
+  }).$extends(withAccelerate())
+  const body = await c.req.json();
+  const userId = c.get('userId');
+  const {success} = updateBlogInput.safeParse(body);
+  if(!success){
+    c.status(411);
+    return c.json({
+      error:"Invalid Inputs"
+    })
+  }  try {
+    await prisma.post.delete({
+      where:{
+        id:body.id,
+        authorId:userId
+      }
+    })
+    return c.json("deleted successfully")
+  } catch (e) {
+    return c.json(e)
+  }
+  })
+
 
 
   

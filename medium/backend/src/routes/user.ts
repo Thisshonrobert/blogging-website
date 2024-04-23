@@ -37,7 +37,10 @@ userRouter.post('/signup', async(c) => {
     });
     const jwtpassword = c.env.JWT_SECRET;
     const jwt = await sign({id:responsePayload.id},jwtpassword);
-    return c.json({jwt:jwt})
+    return c.json({
+      jwt:jwt,
+      name:body.name
+    })
     }
     catch(e){
       console.error("Error in signup:", e);
@@ -77,7 +80,10 @@ userRouter.post('/signin', async(c) => {
       }
       const jwtpassword = c.env.JWT_SECRET;
       const jwt = await sign({id:existinguser.id},jwtpassword);
-      return c.json({jwt:jwt})
+      return c.json({
+        jwt:jwt,
+        name:existinguser.name
+      })
    
   }catch(e){
     return c.json({
