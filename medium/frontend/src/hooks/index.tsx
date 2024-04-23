@@ -22,7 +22,6 @@ export const useBlogs = ()=>{
                 ...blog,
                 publishedDate: new Date(blog.publishedDate)
             })));
-            
             isLoading(false)
     }).catch((error) => {
         console.error("Failed to fetch blogs:", error);

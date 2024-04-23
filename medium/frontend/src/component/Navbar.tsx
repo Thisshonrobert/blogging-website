@@ -5,11 +5,13 @@ import { NameAtom } from "../store/atom/NameAtom";
 import { FilterBlogAtom } from "../store/atom/FilterBlogAtom";
 import _debounce from 'lodash/debounce';
 import { SetStateAction, useState } from "react";
+import { DropDown } from "./DropDown";
 
 export const Navbar = () => {
     const username = useRecoilValue(NameAtom);
     const setFilter = useSetRecoilState(FilterBlogAtom);
     const [searchValue, setSearchValue] = useState("");
+    const [click,setClick] = useState(false)
     
 
     const applyFilter = () => {
@@ -24,26 +26,27 @@ export const Navbar = () => {
     };
 
     return (
-        <div className="border-b-2 flex flex-row justify-between px-8 py-4">
+        <div className="border-b-2 flex flex-row justify-between px-6 py-2">
             <div className="flex">
                 <Link to={"/blogs"} className="text-4xl font-signature font-bold text-black">
-                    Medium
+                    Express
                 </Link>
 
                 <form className="max-w-md mx-4">
                     <label className="mb-2 text-sm font-medium text-gray-900 sr-only">Search</label>
                     <div className="relative">
                         <div className="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none ">
-                            <svg className="w-4 h-4 text-gray-500 " aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
-                                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z"/>
-                            </svg>
+                        <svg className="w-4 h-4 text-gray-500 " aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
+                            <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z"/>
+                        </svg>
+
                         </div>
                         <input
                             onChange={handleInputChange}
                             value={searchValue}
                             type="search"
                             id="default-search"
-                            className="block w-full p-4 ps-10 text-sm text-gray-700 border rounded-full"
+                            className="block w-full p-3 ps-10 text-sm text-gray-700 border rounded-full"
                             placeholder="Search blogs"
                             required
                         />
@@ -51,7 +54,7 @@ export const Navbar = () => {
                     </div>
                 </form>
             </div>
-            <div>
+            <div className="mt-2">
                 <Link to={"/publish"}>
                     <button
                         type="button"
@@ -60,8 +63,8 @@ export const Navbar = () => {
                         New
                     </button>
                 </Link>
-
-                <Avatar size={"big"} name={username} />
+                <Avatar size={"big"} name={username} onClick={()=>setClick(!click)}/>
+                <DropDown isOpen={click}/>
             </div>
         </div>
     );
