@@ -7,7 +7,8 @@ export default {
   theme: {
     extend: {},
     fontFamily:{
-      signature:['Playfair Display SC']
+      signature:['Playfair Display SC'],
+      heading:['PT Serif']
     }
   },
   plugins: [],
