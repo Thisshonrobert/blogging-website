@@ -5,7 +5,7 @@ export function Home() {
   return (
     <div className="flex flex-col min-h-screen">
       <div className="flex-grow bg-amber-400">
-        <div className="border-b-2 border-black flex flex-row justify-between px-24 py-2 font-semibold">
+        <div className="border-b-2 border-black flex flex-row justify-between px-20 py-2 font-semibold">
           <div className="text-4xl font-signature text-black my-2">
             Express
           </div>
