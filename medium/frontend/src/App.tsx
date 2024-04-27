@@ -15,14 +15,14 @@ function App() {
     
       <BrowserRouter>
         <Routes>
-        <Route path="/home" element={<Home/>}/>
           <Route path="/signup" element={<Signup />} />
           <Route path="/signin" element={<Signin />} />
           <Route path="/blog/:id" element={<Blog />} />
-          <Route path="/blogs" element={<Blogs />} />
+          <Route path="/blogs/" element={<Blogs />} />
           <Route path="/publish/" element={<Publish />} />
           <Route path="/yourBlogs" element={<YourBlogs/>} />
-          <Route path="/updateBlog" element={<UpdateBlog/>} /> 
+          <Route path="/updateBlog" element={<UpdateBlog/>} />
+          <Route path="/home" element={<Home/>}/>
         </Routes>
       </BrowserRouter>
     </>

@@ -2,8 +2,8 @@ name = "backend"
 compatibility_date = "2023-12-01"
 
  [vars]
- DATABASE_URL="prisma://accelerate.prisma-data.net/?api_key=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhcGlfa2V5IjoiNGUwY2UwNjUtODQxNi00ZDg1LWJlYzQtZWQ3NjgwNDc4Y2EyIiwidGVuYW50X2lkIjoiMjc3NzE1MDA5MWM2NzQ5YzY5OTEwNTRkOWMxMTg2NmM5NmI2N2E3NjdhNWVkNjZjZGE1NWMyY2UxNmJlZDFiZiIsImludGVybmFsX3NlY3JldCI6IjkyYWMzZjFhLTJlMmItNDE2OS05YWQ3LWUwYzlmZjdmMjQ2ZSJ9.nYolx-kwLCoqDxQcEg21SpIxA8eJGtR3PpxFz6UaThw"
-JWT_SECRET = "HELLOKITTY"
+ DATABASE_URL=""
+JWT_SECRET = ""
 
 
 # [[kv_namespaces]]
