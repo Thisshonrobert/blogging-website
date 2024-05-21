@@ -16,6 +16,7 @@ export const blogRouter = new Hono<{
       userId:string
     }
   }>();
+
   blogRouter.use('/*', async (c, next) => {
     const authHeader =  c.req.header('Authorization')||"";
     if(!authHeader){
@@ -155,26 +156,19 @@ try {
     return c.json(blog)
   })
 
-  blogRouter.put("/delete",async(c)=>{
+  blogRouter.put("/delete/:id",async(c)=>{
     const prisma = new PrismaClient({
       datasourceUrl: c.env?.DATABASE_URL,
   }).$extends(withAccelerate())
-  const body = await c.req.json();
-  const userId = c.get('userId');
-  const {success} = updateBlogInput.safeParse(body);
-  if(!success){
-    c.status(411);
-    return c.json({
-      error:"Invalid Inputs"
-    })
-  }  try {
+
+  const blogId =c.req.param('id');
+   try {
     await prisma.post.delete({
       where:{
-        id:body.id,
-        authorId:userId
+        id:blogId
       }
     })
-    return c.json("deleted successfully")
+    return c.json("deleted succesfully")
   } catch (e) {
     return c.json(e)
   }

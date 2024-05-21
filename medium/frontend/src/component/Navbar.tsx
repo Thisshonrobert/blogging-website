@@ -28,7 +28,7 @@ export const Navbar = () => {
     return (
         <div className="border-b-2 flex flex-row justify-between px-6 py-2">
             <div className="flex">
-                <Link to={"/blogs"} className="text-4xl font-signature font-bold text-black">
+                <Link to={"/blogs"} className="text-4xl font-signature font-semibold text-black">
                     Express
                 </Link>
 

@@ -11,8 +11,40 @@ export const FullBlog = ({ blog }: { blog: BlogType }) => {
     month: 'long',
     day: 'numeric'
   });
-  
-
+  const positiveWords = {
+    A: ["Amazing", "Awesome", "Adventurous"],
+    B: ["Brilliant", "Beautiful", "Blessed"],
+    C: ["Courageous", "Creative", "Cheerful"],
+    D: ["Determined", "Dynamic", "Delightful"],
+    E: ["Energetic", "Enthusiastic", "Empowered"],
+    F: ["Fearless", "Fantastic", "Fulfilled"],
+    G: ["Grateful", "Generous", "Genuine"],
+    H: ["Happy", "Hopeful", "Harmonious"],
+    I: ["Inspired", "Innovative", "Invincible"],
+    J: ["Joyful", "Jubilant", "Jovial"],
+    K: ["Kind", "Keen", "Knowledgeable"],
+    L: ["Loving", "Lively", "Lucky"],
+    M: ["Motivated", "Magnificent", "Mindful"],
+    N: ["Noble", "Nurturing", "Optimistic"],
+    O: ["Optimistic", "Outstanding", "Open-minded"],
+    P: ["Positive", "Passionate", "Peaceful"],
+    Q: ["Quirky", "Quick-witted", "Quality-conscious"],
+    R: ["Resilient", "Radiant", "Resourceful"],
+    S: ["Strong", "Spirited", "Successful"],
+    T: ["Thankful", "Thriving", "Triumphant"],
+    U: ["Unstoppable", "Upbeat", "Unique"],
+    V: ["Vibrant", "Valiant", "Victorious"],
+    W: ["Wise", "Wonderful", "Worthy"],
+    X: ["X-traordinary", "X-citing", "X-hilarating"],
+    Y: ["Youthful", "Yearning", "Yummy"],
+    Z: ["Zesty", "Zealous", "Zingy"]
+  };
+  const initial = blog.author.name[0].toUpperCase()
+  const random = (positiveWords:any)=>{
+    const words = positiveWords[initial] || [];
+    const randomIndex = Math.floor(Math.random() * words.length);
+    return words[randomIndex];
+  }
   return (
     <div>
       <Navbar />
@@ -40,7 +72,7 @@ export const FullBlog = ({ blog }: { blog: BlogType }) => {
               </div>
             </div>
             <div className="pt-2 text-slate-500 pl-6">
-                Random phrase about the author 
+               {random(positiveWords)} {blog.author.name} 
               </div>
            
           </div>
@@ -49,3 +81,6 @@ export const FullBlog = ({ blog }: { blog: BlogType }) => {
     </div>
   );
 };
+
+
+
