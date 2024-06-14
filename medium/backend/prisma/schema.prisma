@@ -22,5 +22,5 @@ model Post {
   publishedDate DateTime     @default(now())
   author    User     @relation(fields: [authorId], references: [id])
   authorId  String
- 
+  likes     Int      @default(0)
 }

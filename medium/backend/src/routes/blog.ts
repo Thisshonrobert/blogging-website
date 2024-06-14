@@ -43,9 +43,6 @@ export const blogRouter = new Hono<{
     
   })
    
-  
- 
-   
   blogRouter.post('/', async(c) => {
     const prisma = new PrismaClient({
         datasourceUrl: c.env?.DATABASE_URL,
@@ -173,6 +170,63 @@ try {
     return c.json(e)
   }
   })
+
+  blogRouter.post("/like/:id",async(c)=>{
+    const prisma = new PrismaClient({
+      datasourceUrl: c.env?.DATABASE_URL,
+  }).$extends(withAccelerate())
+  const blogId =c.req.param('id');
+  try{
+    const likes = await prisma.post.update({
+      where:{
+        id:blogId
+      },
+      data:{
+        likes:{
+          increment:1
+        }
+      }
+    })
+    return c.json({
+      likes:likes.likes
+    })
+  }catch(e){
+    return c.json(e)
+  }
+  })
+  
+  blogRouter.get("/bulklike/:id", async (c) => {
+    const prisma = new PrismaClient({
+      datasourceUrl: c.env?.DATABASE_URL,
+    }).$extends(withAccelerate());
+    const blogId = c.req.param('id');
+    try {
+      const post = await prisma.post.findUnique({
+        where: {
+          id: blogId
+        },
+        select: {
+          likes: true
+        }
+      });
+      if (!post) {
+        return c.json({ error: "Post not found" });
+      }
+      return c.json({
+        likes: post.likes
+      });
+    } catch (e) {
+      return c.json(e);
+    } 
+  });
+  
+  
+  
+  
+  
+  
+  
+  
 
 
 

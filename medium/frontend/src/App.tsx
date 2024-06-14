@@ -22,7 +22,7 @@ function App() {
           <Route path="/publish/" element={<Publish />} />
           <Route path="/yourBlogs" element={<YourBlogs/>} />
           <Route path="/updateBlog" element={<UpdateBlog/>} />
-          <Route path="/home" element={<Home/>}/>
+          <Route path="/" element={<Home/>}/>
         </Routes>
       </BrowserRouter>
     </>

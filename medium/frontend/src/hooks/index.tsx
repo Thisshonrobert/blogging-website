@@ -33,3 +33,6 @@ export const useBlogs = ()=>{
         blogs
     }
 }
+export const  reload = ()=>{
+    return window.location.reload();
+}

@@ -9,7 +9,7 @@ export const BlogSelector = atomFamily({
         key: "BlogAtomSelector",
         get: () => async ({ get }) => {
             const blogId = get(BlogIdAtom);
-            console.log(`id from selectorfamily ${String(blogId)}`)
+           // console.log(`id from selectorfamily ${String(blogId)}`)
             try {
                 const response = await axios.get(`${BACKEND_URL}/api/v1/blog/${String(blogId)}`, {
                     headers: {

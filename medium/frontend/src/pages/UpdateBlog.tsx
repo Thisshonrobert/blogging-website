@@ -6,6 +6,7 @@ import axios from "axios";
 import { BACKEND_URL } from "../config";
 import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
+import { reload } from "../hooks";
 
 export function UpdateBlog() {
     const [title, setTitle] = useState("");
@@ -22,7 +23,7 @@ export function UpdateBlog() {
             setTitle(response.data.title)
             setDescription(response.data.content)
         })
-    },[])
+    },[blogId])
     return (
          <div>
         <Navbar />
@@ -50,12 +51,14 @@ export function UpdateBlog() {
                         });
                         toast("updated Successfully")
                         setTimeout(() => {
-                            navigate("/yourBlogs")
+                            navigate(`/blog/${blogId}`)
+                            reload();
                         }, 2000);
                     }catch(e){
                         console.log(e)
                         toast("Error while Updating")
                     }
+                    
                    
                 }}  type="submit" className="mt-4 inline-flex items-center px-5 py-2.5 text-sm font-medium text-center text-white bg-blue-700 rounded-lg focus:ring-4 focus:ring-blue-200 dark:focus:ring-blue-900 hover:bg-blue-800">
                     Update Post
