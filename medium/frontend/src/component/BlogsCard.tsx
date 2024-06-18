@@ -34,10 +34,10 @@ export const BlogsCard =({authorName,title,content,publishedDate,id}:BlogCardsPr
                             {formattedDate} 
                         </div>
                     </div>
-                    <div className="font-bold text-2xl my-2">
+                    <div className=" font-signature font-bold text-2xl my-2">
                         {title}
                     </div>
-                    <div className="text-xl my-4">
+                    <div className="text-xl my-4 font-poppins">
                         {content.slice(0,100)+"..."}
                     </div>
                     <div className="flex justify-between ">

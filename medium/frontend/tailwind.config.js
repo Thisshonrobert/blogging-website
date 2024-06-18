@@ -8,7 +8,8 @@ export default {
     extend: {},
     fontFamily:{
       signature:['Playfair Display SC'],
-      heading:['PT Serif']
+      heading:['PT Serif'],
+      poppins:['Poppins']
     }
   },
   plugins: [],

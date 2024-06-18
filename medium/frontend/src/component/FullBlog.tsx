@@ -111,7 +111,7 @@ export const FullBlog = ({ blog }: { blog: BlogType }) => {
       <div className="grid grid-cols-12 w-full  px-10  pt-16">
         <div className="col-span-8">
           <div className="flex flex-col px-36">
-            <div className="font-extrabold text-5xl ">{blog.title}</div>
+            <div className="font-extrabold text-5xl font-heading">{blog.title}</div>
             <div className="flex justify-between">
               <div className="text-gray-600 my-4 font-medium">
                 Posted on {formattedDate}
@@ -146,7 +146,7 @@ export const FullBlog = ({ blog }: { blog: BlogType }) => {
               </div>
             </div>
 
-            <div className="my-2">{blog.content}</div>
+            <div className="my-2 font-poppins">{blog.content}</div>
           </div>
         </div>
         <div className="col-span-4">
