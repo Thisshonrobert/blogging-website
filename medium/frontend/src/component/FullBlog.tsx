@@ -8,6 +8,7 @@ import { BlogIdAtom } from "../store/atom/BlogIdAtom";
 import { useRecoilValue } from "recoil";
 import { Share } from "./Share";
 import { Like } from "./Like";
+import { ImageDisplay } from "./ImageDisplay";
 
 export const FullBlog = ({ blog }: { blog: BlogType }) => {
   const [likeCount, setLikeCount] = useState(0);
@@ -60,6 +61,8 @@ export const FullBlog = ({ blog }: { blog: BlogType }) => {
       console.error("Error liking blog:", error);
     }
   };
+
+
   if (!blog) {
     return <div>Blog not found.</div>;
   }
@@ -112,13 +115,13 @@ export const FullBlog = ({ blog }: { blog: BlogType }) => {
         <div className="col-span-8">
           <div className="flex flex-col px-36">
             <div className="font-extrabold text-5xl font-heading">{blog.title}</div>
-            <div className="flex justify-between">
+            <div className="flex justify-between border-b-2">
               <div className="text-gray-600 my-4 font-medium">
                 Posted on {formattedDate}
               </div>
-              
-              <div className="flex flex-row">
-              <Like handleClick={handleClick} count={likeCount} />
+
+              <div className="flex flex-row ">
+                <Like handleClick={handleClick} count={likeCount} />
                 <button
                   className="relative "
                   onClick={() => setShareClicked(!shareClicked)}
@@ -145,6 +148,10 @@ export const FullBlog = ({ blog }: { blog: BlogType }) => {
                 )}
               </div>
             </div>
+            <div className="p-4">
+            <ImageDisplay blogId={BlogId}/>
+            </div>
+            
 
             <div className="my-2 font-poppins">{blog.content}</div>
           </div>

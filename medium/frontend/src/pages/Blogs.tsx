@@ -23,7 +23,7 @@ export const Blogs=()=>{
         <div>
             <Navbar/>
         </div>
-        <div className="flex flex-col justify-center pl-[15%] md:pl-[25%]">
+        <div className="flex flex-col justify-center pl-[8%] md:pl-[10%]">
         {(filteredResult == null || filteredResult.length === 0)?blogs.map((blog,index)=>(
 
               <BlogsCard key={index}
@@ -31,7 +31,8 @@ export const Blogs=()=>{
               authorName={blog.author.name || "Anonymous"}
               title={blog.title} 
               content={blog.content}
-              publishedDate={blog.publishedDate}/>
+              publishedDate={blog.publishedDate}
+              likes={blog.likes}/>
         )):filteredResult.map((blog,index)=>(
 
           <BlogsCard key={index}
@@ -39,7 +40,8 @@ export const Blogs=()=>{
           authorName={blog.author.name || "Anonymous"}
           title={blog.title} 
           content={blog.content}
-          publishedDate={blog.publishedDate}/>
+          publishedDate={blog.publishedDate}
+          likes={blog.likes}/>
     ))}
        
             

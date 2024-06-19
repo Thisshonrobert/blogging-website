@@ -26,11 +26,11 @@ export function YourBlogs() {
         {blogs.filter((blog)=>blog.author.name==username).map((blog,index)=>(
 
               <BlogsCard key={index}
-              id={blog.id}
-              authorName={blog.author.name || "Anonymous"}
-              title={blog.title} 
-              content={blog.content}
-              publishedDate={blog.publishedDate}/>
+          id={blog.id}
+          authorName={blog.author.name || "Anonymous"}
+          title={blog.title}
+          content={blog.content}
+          publishedDate={blog.publishedDate} />
         ))}
          </div>
     </div>

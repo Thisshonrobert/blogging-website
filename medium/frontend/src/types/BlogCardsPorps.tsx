@@ -4,4 +4,5 @@ export interface BlogCardsProps {
     title:string;
     content:string;
     publishedDate:Date;
+    likes?:number
 }

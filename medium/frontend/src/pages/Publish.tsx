@@ -10,50 +10,100 @@ export const Publish = () => {
     const [title, setTitle] = useState("");
     const [description, setDescription] = useState("");
     const navigate = useNavigate();
-    const setBlogId = useSetRecoilState(BlogIdAtom)
+    const  setBlogId = useSetRecoilState(BlogIdAtom);
 
-    return <div>
-        <Navbar />
-        <div className="flex justify-center w-full pt-8"> 
-            <div className="max-w-screen-lg w-full">
-                <input onChange={(e) => {
-                    setTitle(e.target.value)
-                }} type="text" className=" bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" placeholder="Title" />
+    const handleUpload = async (file: string | Blob, blogId: string) => {
+        const formData = new FormData();
+        formData.append('file', file);
+        formData.append('upload_preset', 'Blogging-website');
+        formData.append('public_id', `blogs/${blogId}`); // Set the image name as the blog ID in the blogs folder
 
-                <TextEditor onChange={(e) => {
-                    setDescription(e.target.value)
-                }} />
-                <button onClick={async () => {
-                    const response = await axios.post(`${BACKEND_URL}/api/v1/blog`, {
-                        title,
-                        content: description
-                    }, {
-                        headers: {
-                            Authorization: localStorage.getItem("token")
-                        }
-                    });
+        try {
+             await axios.post(
+                `https://api.cloudinary.com/v1_1/djpt4mg6i/image/upload`,
+                formData
+            );
+        } catch (error) {
+            console.error('Error uploading image:', error);
+        }
+    };
+
+    const handleSubmit = async (event:any) => {
+        event.preventDefault();
+        try {
+            const response = await axios.post(`${BACKEND_URL}/api/v1/blog`, {
+                title,
+                content: description
+            }, {
+                headers: {
+                    Authorization: localStorage.getItem("token")
+                }
+            });
+
+            const newBlogId = response.data.id;
+            setBlogId(newBlogId);
+
+            // After setting the Blog ID, upload the image
+            const fileInput = document.getElementById('fileInput') as HTMLInputElement;
+            if (fileInput && fileInput.files && fileInput.files.length > 0) {
+                const file = fileInput.files[0];
+                await handleUpload(file, newBlogId);
+            }
+
+            // Navigate to the specific blog page
+            navigate(`/blog/${newBlogId}`);
+        } catch (error) {
+            console.error("Error creating blog:", error);
+        }
+    };
+
+    return (
+        <div>
+            <Navbar />
+            <div className="flex justify-center w-full pt-8">
+                <div className="max-w-screen-lg w-full">
                     
-                    setBlogId(response.data.id); 
-                    navigate(`/blog/${response.data.id}`)
-                }}  type="submit" className="mt-4 inline-flex items-center px-5 py-2.5 text-sm font-medium text-center text-white bg-blue-700 rounded-lg focus:ring-4 focus:ring-blue-200 dark:focus:ring-blue-900 hover:bg-blue-800">
-                    Publish post
-                </button>
+                    <input
+                        onChange={(e) => setTitle(e.target.value)}
+                        type="text"
+                        className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+                        placeholder="Title"
+                    />
+
+                    <TextEditor onChange={(e) => setDescription(e.target.value)} />
+
+                    <input id="fileInput" type="file" />
+
+                    <button
+                        onClick={handleSubmit}
+                        type="submit"
+                        className="mt-4 inline-flex items-center px-5 py-2.5 text-sm font-medium text-center text-white bg-blue-700 rounded-lg focus:ring-4 focus:ring-blue-200 dark:focus:ring-blue-900 hover:bg-blue-800"
+                    >
+                        Publish post
+                    </button>
+                </div>
             </div>
         </div>
-    </div>
-}
+    );
+};
 
-
-function TextEditor({ onChange }: {onChange: (e: ChangeEvent<HTMLTextAreaElement>) => void}) {
-    return <div className="mt-2">
-        <div className="w-full mb-4 ">
-            <div className="flex items-center justify-between border">
-            <div className="my-2 bg-white rounded-b-lg w-full">
-                
-                <textarea onChange={onChange} id="editor" rows={8} className="focus:outline-none block w-full px-0 text-sm text-gray-800 bg-white border-0 pl-2" placeholder="Write an article..." required />
+function TextEditor({ onChange }: { onChange: (e: ChangeEvent<HTMLTextAreaElement>) => void }) {
+    return (
+        <div className="mt-2">
+            <div className="w-full mb-4">
+                <div className="flex items-center justify-between border">
+                    <div className="my-2 bg-white rounded-b-lg w-full">
+                        <textarea
+                            onChange={onChange}
+                            id="editor"
+                            rows={8}
+                            className="focus:outline-none block w-full px-0 text-sm text-gray-800 bg-white border-0 pl-2"
+                            placeholder="Write an article..."
+                            required
+                        />
+                    </div>
+                </div>
             </div>
         </div>
-       </div>
-    </div>
-    
+    );
 }
