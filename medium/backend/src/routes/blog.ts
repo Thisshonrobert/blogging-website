@@ -219,6 +219,25 @@ try {
       return c.json(e);
     } 
   });
+
+  blogRouter.get('/recent-posts', async (c) => {
+    const prisma = new PrismaClient({
+      datasourceUrl: c.env?.DATABASE_URL,
+  }).$extends(withAccelerate())
+    try {
+      const recentPosts = await prisma.post.findMany({
+        orderBy: {
+          publishedDate: 'desc',
+        },
+        take: 5, // Adjust the number to display the desired amount of recent posts
+      });
+      return c.json(recentPosts);
+    } catch (error) {
+      c.status(500);
+      return c.json({ error: 'Failed to fetch recent posts' });
+    }
+  });
+  
   
   
   
