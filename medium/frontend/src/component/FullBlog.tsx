@@ -121,7 +121,7 @@ export const FullBlog = ({ blog }: { blog: BlogType }) => {
               </div>
 
               <div className="flex flex-row ">
-                <Like handleClick={handleClick} count={likeCount} />
+                <div className="mt-4"><Like handleClick={handleClick} count={likeCount} /></div>
                 <button
                   className="relative "
                   onClick={() => setShareClicked(!shareClicked)}
@@ -149,7 +149,7 @@ export const FullBlog = ({ blog }: { blog: BlogType }) => {
               </div>
             </div>
             <div className="p-4">
-            <ImageDisplay blogId={BlogId}/>
+            <ImageDisplay blogId={BlogId} resize={false}/>
             </div>
             
 

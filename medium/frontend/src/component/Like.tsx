@@ -2,7 +2,7 @@ export const Like = ({handleClick,count}:{handleClick:()=>void,count:number})=>{
     return(<>
     <button
                 onClick={handleClick}
-                className={"rounded-full  h-0 flex mt-4 mr-4 hover:text-yellow-800"}
+                className={"rounded-full  h-0 flex pl-2 mr-4 hover:text-yellow-800"}
               >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"

@@ -1,5 +1,5 @@
 export interface BlogType{
-    likes: any;
+    likes: number;
     content:string;
     title:string;
     id:string;
