@@ -16,43 +16,48 @@ export const Blogs = () => {
     return (
       <div>
         <Navbar />
-        <BlogSkeleton />
-        <BlogSkeleton />
-        <BlogSkeleton />
+        <div className="pt-10"> <BlogSkeleton />
+          <BlogSkeleton />
+          <BlogSkeleton />
+          </div>
+
       </div>
     );
   }
 
   return (
     <div>
-      <Navbar />
+      <div >
+        <Navbar />
+      </div>
+
       <div className="flex bg-zinc-100">
-        <div className="w-full md:w-8/12 p-4  h-full pl-20">
+        <div className="w-full md:w-8/12 p-4  h-full pl-20 mt-10">
           {filteredResult == null || filteredResult.length === 0
             ? blogs.map((blog, index) => (
-                <BlogsCard
-                  key={index}
-                  id={blog.id}
-                  authorName={blog.author.name || "Anonymous"}
-                  title={blog.title}
-                  content={blog.content}
-                  publishedDate={blog.publishedDate}
-                  likes={blog.likes}
-                />
-              ))
+              <BlogsCard
+                key={index}
+                id={blog.id}
+                authorName={blog.author.name || "Anonymous"}
+                title={blog.title}
+                content={blog.content}
+                publishedDate={blog.publishedDate}
+                likes={blog.likes}
+              />
+            ))
             : filteredResult.map((blog, index) => (
-                <BlogsCard
-                  key={index}
-                  id={blog.id}
-                  authorName={blog.author.name || "Anonymous"}
-                  title={blog.title}
-                  content={blog.content}
-                  publishedDate={blog.publishedDate}
-                  likes={blog.likes}
-                />
-              ))}
+              <BlogsCard
+                key={index}
+                id={blog.id}
+                authorName={blog.author.name || "Anonymous"}
+                title={blog.title}
+                content={blog.content}
+                publishedDate={blog.publishedDate}
+                likes={blog.likes}
+              />
+            ))}
         </div>
-       <div className="border-l-2 border-slate-200 max-h-full"></div>
+        <div className="border-l-2 border-slate-200 max-h-full"></div>
       </div>
       <div className=" md:block fixed top-16 right-0 h-screen p-4  mt-2">
         <div className="font-poppins font-semibold text-lg my-2 pl-2"> Staff picks</div>

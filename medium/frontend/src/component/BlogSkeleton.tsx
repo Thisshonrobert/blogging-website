@@ -1,5 +1,5 @@
 export const BlogSkeleton = () => (
-  <div className="border-b-2 border-slate-200 max-w-lg p-4 animate-pulse ml-[15%] md:ml-[25%] ">
+  <div className="border-b-2 border-slate-200 max-w-lg p-4 animate-pulse ml-[15%] md:ml-[25%] pt-10">
     <div className="flex flex-row my-2 ">
       <div className="mr-2 bg-gray-200 rounded-full w-6 h-6"></div>
       <div className="font-medium bg-gray-200 rounded w-20 h-4"></div>

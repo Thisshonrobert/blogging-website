@@ -26,7 +26,7 @@ export const Navbar = () => {
     };
 
     return (
-        <div className="border-b-2 flex flex-row justify-between px-6 py-2 bg-gradient-to-r from-zinc-200 to-zinc-400 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-green-200 ">
+        <div className="border-b-2 w-full flex flex-row justify-between px-6 py-2 bg-gradient-to-r from-zinc-200 to-zinc-400 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-green-200 fixed">
             <div className="flex">
                 
                 <Link to={"/"} className="text-4xl font-signature font-semibold text-black">

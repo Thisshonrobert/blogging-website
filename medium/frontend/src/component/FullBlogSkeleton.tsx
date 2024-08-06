@@ -1,5 +1,5 @@
 export const FullBlogSkeleton = () => (
-    <div className="grid grid-cols-12 w-full  px-10  pt-16">
+    <div className="grid grid-cols-12 w-full  px-10  pt-24 py-2">
       <div className="col-span-8">
         <div className="animate-pulse bg-gray-300 h-10 w-1/2 rounded"></div>
         <div className="animate-pulse bg-gray-300 h-4 w-3/4 rounded mt-2"></div>

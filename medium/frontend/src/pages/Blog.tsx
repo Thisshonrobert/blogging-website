@@ -20,14 +20,14 @@ export const Blog = () => {
 
     switch (blogLoadable.state) {
         case 'loading':
-            return <div>
+            return <div >
                 <FullBlogSkeleton/>
             </div>;
         case 'hasError':
             return <div>Error loading blog.</div>;
         case 'hasValue':
             return (
-                <div>
+                <div >
                     <FullBlog blog={blogLoadable.contents} />
                 </div>
             );

@@ -112,7 +112,7 @@ export const FullBlog = ({ blog }: { blog: BlogType }) => {
     <div>
       <Navbar />
       <div className="grid grid-cols-12 w-full  px-10  pt-16">
-        <div className="col-span-8">
+        <div className="col-span-8 pt-10">
           <div className="flex flex-col px-36">
             <div className="font-extrabold text-5xl font-heading">{blog.title}</div>
             <div className="flex justify-between border-b-2">
@@ -158,7 +158,7 @@ export const FullBlog = ({ blog }: { blog: BlogType }) => {
         </div>
         <div className="col-span-4">
           <div className="flex flex-col">
-            <div className="font-medium my-2">Author</div>
+            <div className="font-medium my-2 pt-10">Author</div>
             <div className="flex flex-row pr-2">
               <div className="mt-0.5 flex flex-col justify-center  ">
                 <Avatar size={"small"} name={blog.author.name || "Anonymous"} />
